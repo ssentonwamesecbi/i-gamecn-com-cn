@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 发现你的游戏节奏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fdf6ee 0%, #fce6d4 60%, #fadac2 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            color: #3d2e24;
+            line-height: 1.7;
+        }
+
+        .card {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 252, 248, 0.92);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 48px;
+            padding: 3.5rem 3rem;
+            box-shadow: 0 20px 40px -12px rgba(170, 110, 70, 0.25),
+                        0 4px 18px rgba(230, 180, 140, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1.5rem 1rem; }
+            .card { padding: 2.2rem 1.6rem; border-radius: 36px; }
+        }
+
+        .hero-line {
+            font-size: 2.6rem;
+            font-weight: 450;
+            letter-spacing: -0.02em;
+            color: #52392a;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #5d3f2b, #7a553b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #8a6a54;
+            margin-bottom: 2.2rem;
+            border-left: 3px solid #dbb594;
+            padding-left: 1.2rem;
+            font-weight: 380;
+        }
+
+        .intro {
+            font-size: 1.05rem;
+            margin-bottom: 2.4rem;
+            color: #45342a;
+        }
+
+        .intro a {
+            color: #b0764d;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px dashed #dbb594;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .intro a:hover {
+            color: #7f5539;
+            border-bottom-style: solid;
+            border-color: #7f5539;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.4rem;
+            margin: 2rem 0 2.6rem;
+        }
+
+        .feature-item {
+            background: #fcf6ef;
+            border-radius: 24px;
+            padding: 1.4rem 1.2rem;
+            box-shadow: inset 0 1px 2px rgba(255, 245, 235, 0.6), 0 2px 6px rgba(160, 110, 70, 0.08);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid #f2e2d2;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(160, 100, 60, 0.12);
+            border-color: #e6cdb8;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 480;
+            margin-bottom: 0.3rem;
+            color: #4f3827;
+            letter-spacing: 0.02em;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #655145;
+        }
+
+        .scene-note {
+            background: #f8ede2;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #ecdac9;
+        }
+
+        .scene-note p {
+            font-size: 1rem;
+            color: #4d3b2e;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-note .quote {
+            font-style: italic;
+            color: #7b5f4b;
+            padding-left: 1rem;
+            border-left: 2px solid #cfb098;
+        }
+
+        .closing {
+            margin-top: 2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #eadacb;
+            color: #5e4b3d;
+            font-size: 0.98rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.2rem 0.5rem;
+        }
+
+        .closing a {
+            color: #886547;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 30px;
+            padding: 0.2rem 1rem;
+            background: #f3e4d6;
+            transition: background 0.2s, color 0.2s;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            margin: 0 0.1rem;
+        }
+
+        .closing a:hover {
+            background: #e5cfbb;
+            color: #482f1f;
+        }
+
+        .faq-mini {
+            margin: 1.8rem 0 0.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-mini details {
+            background: #fcf5ed;
+            border-radius: 20px;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid #ecdac9;
+            transition: background 0.2s;
+        }
+
+        .faq-mini details summary {
+            font-weight: 480;
+            color: #4f3827;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini details summary::before {
+            content: "▸";
+            color: #b68562;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-mini details p {
+            margin-top: 0.5rem;
+            color: #5a4638;
+            font-size: 0.95rem;
+            padding-left: 1.4rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eddccc;
+            margin: 1.6rem 0 0.8rem;
+        }
+
+        .footnote {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #a68b78;
+            margin-top: 0.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="hero-line">找到你真正想玩的</div>
+    <div class="hero-sub">游戏信息 · 社区氛围 · 适度推荐</div>
+
+    <div class="intro">
+        无论你是刚刚开始探索，还是已经玩过上百款作品，<a href="https://i-gamecn.com.cn">爱游戏</a> 都希望能帮你更快地了解一款游戏适不适合自己。<br>
+        不需要翻遍评测，也不必被铺天盖地的广告淹没——我们只呈现简洁、真实的游戏资料，把判断交给你的手感。
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h3>📋 资料卡片</h3>
+            <p>每款游戏都配有清晰的基本信息、类型标签与发行背景，一眼定位。</p>
+        </div>
+        <div class="feature-item">
+            <h3>🔍 筛选辅助</h3>
+            <p>按风格、平台、玩家评分粗略分类，减少大海捞针式搜索。</p>
+        </div>
+        <div class="feature-item">
+            <h3>💬 简谈氛围</h3>
+            <p>社区讨论更关注实际体验，少一点争吵，多一点真诚分享。</p>
+        </div>
+        <div class="feature-item">
+            <h3>🧭 浏览记录</h3>
+            <p>轻量收藏夹功能，帮你记住哪些游戏曾经让你心动。</p>
+        </div>
+    </div>
+
+    <div class="scene-note">
+        <p>💡 一个常见的场景：</p>
+        <p class="quote">“朋友推荐了一款游戏，但我连它是什么玩法都不清楚。打开 <a href="https://i-gamecn.com.cn" style="color:#b0764d; text-decoration:underline; text-underline-offset:2px;">爱游戏</a>，扫一眼类型和简介，心里就有数了。不会浪费下载时间，也不会错过真正对胃口的作品。”</p>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>爱游戏 收录哪些平台的游戏？</summary>
+            <p>目前以 PC、主机（PlayStation、Xbox、Nintendo Switch）及主流掌机为主，部分热门移动端游戏也会收录。我们更关注有完整游戏体验的作品，不收录纯博彩或违规内容。</p>
+        </details>
+        <details>
+            <summary>评分和推荐准吗？</summary>
+            <p>评分来自玩家社区综合反馈以及媒体均分参考，不构成绝对标准。游戏好不好玩，最终还是看个人偏好。我们鼓励你多看几份不同口味的评价。</p>
+        </details>
+    </div>
+
+    <hr>
+
+    <div class="closing">
+        <span>如果你也想找一个安静、不闹腾的游戏资料站，</span>
+        <a href="https://i-gamecn.com.cn">爱游戏</a>
+        <span>或许是个不错的起点。没有弹窗，没有浮夸排行，只有游戏本该有的样子。</span>
+    </div>
+
+    <div class="footnote">
+        <span>偶尔翻翻，总有不期而遇的乐趣</span>
+    </div>
+</div>
+</body>
+</html>

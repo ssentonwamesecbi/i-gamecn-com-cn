@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ssentonwamesecbi.github.io/i-gamecn-com-cn/sitemap.xml
